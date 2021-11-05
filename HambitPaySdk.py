@@ -68,10 +68,14 @@ if __name__ == '__main__':
     access_key = '' # input api key
     secret_key = "" # input secret key
     nonce = uuid.uuid1()
+    # example input for getReceiptList
     params3 = {"productId":3256489865456, "externalOrderId": "564654651", "storeName":"test Store"}
+    # example input for getStatementList
     params4 = {"page":1, "size": 20,"accountBookType":0,"accountBookSourceType":0}
+    # Generate signature for header. params=None if not necessary
     sign = genSign(params=params4)
     headers = {'access_key': access_key, 'timestamp': str(t), 'nonce': str(nonce), 'sign': sign}
+    # example input for newInvoice
     newInvoiceJson = {
             "externalOrderId": "54566-abc5748941320",
             "productsAmount": 0.0,
@@ -93,6 +97,7 @@ if __name__ == '__main__':
             "tokenType": 901,
             "assetType": 102
     }
+    # example input for newTopUp
     newTopUpJson = {
         "amount": 100.0,
         "assetType": 102,
@@ -102,6 +107,7 @@ if __name__ == '__main__':
         "tokenType": 901,
         "currencyType": "USD"
         }
+    # example input for newTransfer
     newTransferJson = {
         "addressTo": "0xdfsgdfgdgdfdg",
         "amount": 100.0,
@@ -110,8 +116,8 @@ if __name__ == '__main__':
         "tokenType": 901
         }
 
-
     host = 'https://api.hambit.info/open' # Production Server
+    # host = 'http://pre-server.biteye.info:10035/open' # Pre-production server
     # a= getMerchantAccountList(headers=headers)
     # a= newInvoice(headers=headers, newInvoiceJson=newInvoiceJson)
     # a = getReceiptList(headers=headers, params=params3)
